@@ -30,7 +30,8 @@ const Dashboard = () => {
 
     const fetchHistory = async () => {
         try {
-            const { data } = await axios.get('/api/');
+            const apiUrl = import.meta.env.VITE_API_URL;
+            const { data } = await axios.get(`${apiUrl}/api/`);
             setHistory(data);
         } catch (error) {
             console.error("Failed to fetch history", error);
@@ -70,7 +71,11 @@ const Dashboard = () => {
                 context: feature.title
             };
 
-            const { data } = await axios.post(feature.endpoint, payload);
+            const apiUrl = import.meta.env.VITE_API_URL;
+            const { data } = await axios.post(
+                `${apiUrl}${feature.endpoint}`,
+                payload
+                );
             setFeatureData(data);
         } catch (error) {
             console.error(error);
