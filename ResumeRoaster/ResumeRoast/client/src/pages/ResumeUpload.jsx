@@ -64,11 +64,8 @@ const ResumeUpload = () => {
 
         try {
             const apiUrl = import.meta.env.VITE_API_URL;
-            const { data } = await axios.post('${apiUrl}/api/analyze', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            });
+            const { data } = await axios.post(`${apiUrl}/api/analyze`, formData
+            );
 
             // Save to Context
             setResumeData({
