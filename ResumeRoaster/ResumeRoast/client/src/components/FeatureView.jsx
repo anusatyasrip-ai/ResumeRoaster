@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 
+
 const FeatureView = ({ title, data, loading, endpoint }) => {
     const { resumeData } = useAuth();
     // Default to 'results' if it is "Analyze Match", else 'chat'
@@ -51,7 +52,8 @@ const FeatureView = ({ title, data, loading, endpoint }) => {
         setChatLoading(true);
 
         try {
-            const { data: resData } = await axios.post('/api/chat', {
+            const apiUrl = import.meta.env.VITE_API_URL;
+            const { data: resData } = await axios.post(`${apiUrl}/api/chat`, {
                 message: chatMessage,
                 context: title,
                 resumeText: resumeData?.text
