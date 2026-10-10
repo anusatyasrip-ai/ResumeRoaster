@@ -80,7 +80,7 @@ async function generateRoast(resumeText, jobDescription) {
 async function parseResumeFromImage(imageBuffer, mimeType) {
     const prompt = "Analyze this resume image. Return JSON with fullText, summary, skills.";
     try {
-        const model = getModel("gemini-2.5-flash"); // Flash supports vision
+        const model = getModel("gemini-3.8-flash"); // Flash supports vision
         const result = await retryWithBackoff(() => model.generateContent([
             prompt,
             {
@@ -132,8 +132,8 @@ async function chatWithResume(question, resumeText, history = [], context = "Gen
 // 5. Generic Helper
 async function generateGenericResponse(prompt) {
     try {
-        // Reverted to gemini-2.5-flash per user request (Warning: High Rate Limit Risk)
-        const model = getModel("gemini-2.5-flash");
+        // Reverted to gemini-3.8-flash per user request (Warning: High Rate Limit Risk)
+        const model = getModel("gemini-3.8-flash");
         const result = await retryWithBackoff(() => model.generateContent(prompt));
         const text = result.response.text();
 
