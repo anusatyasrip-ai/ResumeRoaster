@@ -20,7 +20,7 @@ const pinecone = pineconeApiKey ? new Pinecone({ apiKey: pineconeApiKey }) : nul
 const index = pinecone && pineconeIndexName ? pinecone.index(pineconeIndexName) : null;
 
 // Helper to get model - centralized
-function getModel(modelName = "gemini-2.5-flash") {
+function getModel(modelName = "gemini-3.8-flash") {
     return genAI.getGenerativeModel({ model: modelName });
 }
 
